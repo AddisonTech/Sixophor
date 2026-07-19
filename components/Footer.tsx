@@ -1,5 +1,5 @@
 import Wordmark from "./Wordmark";
-import { CONTACT_EMAIL } from "./ContactForm";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export default function Footer() {
   return (

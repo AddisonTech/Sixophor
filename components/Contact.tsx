@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
-import ContactForm, { CONTACT_EMAIL } from "./ContactForm";
+import ContactForm from "./ContactForm";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export default function Contact() {
   return (

@@ -22,9 +22,10 @@ export default function About() {
           2 AM, building your website with the newest tools available.
         </p>
         <p>
-          Sixophor is a one-person studio, and that&apos;s deliberate. You talk
-          to the person doing the work, from the first conversation to the
-          final handoff.
+          Sixophor is a family operation, kept small on purpose. I handle
+          design and development, and my wife, Karrie Smith, is our marketing
+          director. You talk directly to the people doing the work, from the
+          first conversation to the final handoff.
         </p>
       </div>
     </section>

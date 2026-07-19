@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { services } from "@/lib/services";
-
-// Update this when the real studio inbox exists.
-export const CONTACT_EMAIL = "hello@sixophor.com";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 const inputClass =
   "w-full rounded-md border border-panel bg-panel px-4 py-3 text-base text-fg placeholder:text-muted/60 focus:border-accent focus:outline-none";
