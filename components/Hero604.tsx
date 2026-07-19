@@ -8,7 +8,7 @@ const CONNECT_RADIUS = 22;
 const MAX_LINKS_PER_NODE = 3;
 
 const CYAN = { r: 34, g: 211, b: 238 };
-const WHITE = { r: 245, g: 247, b: 250 };
+const WHITE = { r: 255, g: 255, b: 255 };
 
 type Node = {
   baseX: number;
@@ -207,7 +207,7 @@ export default function Hero604() {
         }
         ctx!.beginPath();
         ctx!.arc(n.x, n.y, 1.7 + boost * 1.2, 0, Math.PI * 2);
-        ctx!.fillStyle = rgba(n.color, 0.75 + boost * 0.25);
+        ctx!.fillStyle = rgba(n.color, 0.92 + boost * 0.08);
         ctx!.fill();
       }
 

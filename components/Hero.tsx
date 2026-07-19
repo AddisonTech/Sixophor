@@ -21,7 +21,7 @@ export default function Hero() {
             Start a Project
           </a>
         </div>
-        <div className="hidden shrink-0 lg:block">
+        <div className="hidden shrink-0 lg:block lg:translate-x-8 xl:translate-x-20">
           <Hero604 />
         </div>
       </div>
