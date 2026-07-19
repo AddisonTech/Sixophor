@@ -4,27 +4,65 @@ import { useState } from "react";
 import { services } from "@/lib/services";
 import { CONTACT_EMAIL } from "@/lib/site";
 
+type Status = "idle" | "sending" | "sent" | "fallback" | "error";
+
 const inputClass =
-  "w-full rounded-md border border-panel bg-panel px-4 py-3 text-base text-fg placeholder:text-muted/60 focus:border-accent focus:outline-none";
+  "w-full rounded-md border border-edge bg-panel px-4 py-3 text-base text-fg placeholder:text-muted/60 focus:border-accent focus:outline-none";
 
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [fallbackHref, setFallbackHref] = useState(`mailto:${CONTACT_EMAIL}`);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "sending") return;
+
     const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const projectType = String(data.get("projectType") ?? "");
-    const message = String(data.get("message") ?? "");
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      projectType: String(data.get("projectType") ?? ""),
+      message: String(data.get("message") ?? ""),
+      company: String(data.get("company") ?? ""),
+    };
 
-    const subject = encodeURIComponent(`Project inquiry: ${projectType}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nProject type: ${projectType}\n\n${message}`,
+    const subject = encodeURIComponent(
+      `Project inquiry: ${payload.projectType}`,
     );
+    const mailBody = encodeURIComponent(
+      `Name: ${payload.name}\nEmail: ${payload.email}\nProject type: ${payload.projectType}\n\n${payload.message}`,
+    );
+    setFallbackHref(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${mailBody}`);
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        setStatus("sent");
+      } else if (res.status === 503) {
+        setStatus("fallback");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="rounded-lg border border-accent/40 bg-panel p-8" role="status">
+        <h3 className="text-lg font-semibold">Message sent.</h3>
+        <p className="mt-2 text-muted">
+          Thanks for reaching out. I&apos;ll get back to you within one
+          business day.
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -78,20 +116,41 @@ export default function ContactForm() {
         />
       </label>
 
+      {/* Honeypot for bots; hidden from real visitors and screen readers */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
       <button
         type="submit"
-        className="mt-2 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-8 text-base font-semibold text-ink transition-opacity hover:opacity-85 sm:self-start"
+        disabled={status === "sending"}
+        className="mt-2 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-8 text-base font-semibold text-ink transition-opacity hover:opacity-85 disabled:opacity-60 sm:self-start"
       >
-        Send Message
+        {status === "sending" ? "Sending..." : "Send Message"}
       </button>
 
-      {sent && (
+      {status === "fallback" && (
         <p className="text-sm text-muted" role="status">
-          This opened a draft in your email app. If nothing opened, email{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="text-accent underline">
-            {CONTACT_EMAIL}
+          The form isn&apos;t connected to an inbox yet. Your message is ready
+          to go:{" "}
+          <a href={fallbackHref} className="text-accent underline">
+            send it by email instead
+          </a>
+          .
+        </p>
+      )}
+      {status === "error" && (
+        <p className="text-sm text-muted" role="alert">
+          Something went wrong sending your message. Please{" "}
+          <a href={fallbackHref} className="text-accent underline">
+            email me directly
           </a>{" "}
-          directly.
+          instead.
         </p>
       )}
     </form>

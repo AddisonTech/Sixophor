@@ -39,7 +39,7 @@ export default function Process() {
                 {index + 1}
               </span>
               <span
-                className="hidden h-px flex-1 bg-panel md:block"
+                className="hidden h-px flex-1 bg-edge md:block"
                 aria-hidden="true"
               />
             </div>

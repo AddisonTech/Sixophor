@@ -8,13 +8,14 @@ const links = [
   { href: "#work", label: "Work" },
   { href: "#process", label: "Process" },
   { href: "#about", label: "About" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-panel bg-ink/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-edge bg-ink/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a href="#top" aria-label="Sixophor Software home" className="py-2">
           <Wordmark />
@@ -72,7 +73,7 @@ export default function Header() {
       </nav>
 
       {open && (
-        <div className="border-t border-panel bg-ink md:hidden">
+        <div className="border-t border-edge bg-ink md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
             {links.map((link) => (
               <a

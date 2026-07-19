@@ -3,11 +3,12 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   CONTACT_PHONE_DISPLAY,
+  SERVICE_AREA,
 } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-panel">
+    <footer className="border-t border-edge">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <Wordmark />
         <div className="flex flex-col gap-2 text-sm text-muted sm:items-end">
@@ -50,6 +51,7 @@ export default function Footer() {
             </svg>
             {CONTACT_PHONE_DISPLAY}
           </a>
+          <p>Based in {SERVICE_AREA}. Working with clients everywhere.</p>
           <p>
             &copy; {new Date().getFullYear()} Sixophor Software. All rights
             reserved.

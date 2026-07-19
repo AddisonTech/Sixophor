@@ -22,10 +22,24 @@ Open http://localhost:3000.
 
 ## Contact form
 
-The form opens the visitor's email app with a prefilled message (mailto). No backend or keys needed. To switch to real form delivery later, swap the submit handler in `components/ContactForm.tsx` for a POST to Formspree, Resend, or an API route.
+The form POSTs to `/api/contact`, which sends the message through Resend to `CONTACT_EMAIL`. Setup:
 
-The contact address is set in `components/ContactForm.tsx` (`CONTACT_EMAIL`).
+1. Create a free account at resend.com (sign up with the address in `lib/site.ts` so the free tier can deliver to it)
+2. Create an API key
+3. Locally: copy `.env.example` to `.env.local` and fill in `RESEND_API_KEY`
+4. On Vercel: add `RESEND_API_KEY` under Project Settings > Environment Variables
+
+Until the key is set, the form shows a fallback link that opens a prefilled email instead. Contact details (email, phone, service area, site URL) all live in `lib/site.ts`.
+
+Note: on Resend's free tier without a verified domain, mail sends from `onboarding@resend.dev` and can only deliver to the account owner's email. Once a real domain exists, verify it in Resend and update the `from` address in `app/api/contact/route.ts`.
+
+## SEO
+
+- `app/opengraph-image.png` is the social share card
+- JSON-LD (ProfessionalService + FAQPage) is in `app/page.tsx`
+- `app/robots.ts` and `app/sitemap.ts` generate robots.txt and sitemap.xml
+- Set `NEXT_PUBLIC_SITE_URL` when the real domain exists
 
 ## Deploy
 
-Push to GitHub and import the repo in Vercel. No extra configuration needed.
+Push to GitHub and import the repo in Vercel. No extra configuration needed beyond the env vars above.

@@ -30,7 +30,7 @@ export default function Work() {
         {demos.map((demo) => (
           <div
             key={demo.label}
-            className="flex flex-col rounded-lg border border-panel bg-panel p-6"
+            className="flex flex-col rounded-lg border border-edge bg-panel p-6"
           >
             <span className="mb-3 inline-block w-fit rounded-full border border-accent/40 px-3 py-1 text-xs font-medium uppercase tracking-wide text-accent">
               Demo project, coming soon
