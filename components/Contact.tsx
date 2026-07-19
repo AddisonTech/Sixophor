@@ -1,0 +1,27 @@
+import SectionHeading from "./SectionHeading";
+import ContactForm, { CONTACT_EMAIL } from "./ContactForm";
+
+export default function Contact() {
+  return (
+    <section id="contact" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <SectionHeading
+        title="Start a project"
+        lead="Tell me what you're building and I'll get back to you within one business day."
+      />
+
+      <div className="max-w-2xl">
+        <ContactForm />
+        <p className="mt-6 text-sm text-muted">
+          Prefer email? Reach me directly at{" "}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="text-accent transition-opacity hover:opacity-85"
+          >
+            {CONTACT_EMAIL}
+          </a>
+          .
+        </p>
+      </div>
+    </section>
+  );
+}
