@@ -1,6 +1,10 @@
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
-import { CONTACT_EMAIL } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+} from "@/lib/site";
 
 export default function Contact() {
   return (
@@ -13,12 +17,19 @@ export default function Contact() {
       <div className="max-w-2xl">
         <ContactForm />
         <p className="mt-6 text-sm text-muted">
-          Prefer email? Reach me directly at{" "}
+          Prefer email or a call? Reach me directly at{" "}
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             className="text-accent transition-opacity hover:opacity-85"
           >
             {CONTACT_EMAIL}
+          </a>{" "}
+          or{" "}
+          <a
+            href={`tel:${CONTACT_PHONE}`}
+            className="text-accent transition-opacity hover:opacity-85"
+          >
+            {CONTACT_PHONE_DISPLAY}
           </a>
           .
         </p>
