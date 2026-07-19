@@ -1,20 +1,34 @@
+import Image from "next/image";
+import Link from "next/link";
 import SectionHeading from "./SectionHeading";
+import bistroShot from "@/public/work/bistro.png";
+import contractorShot from "@/public/work/contractor.png";
+import shopShot from "@/public/work/shop.png";
 
 const demos = [
   {
-    label: "Restaurant",
+    label: "Brightwater Bistro",
+    kind: "Restaurant",
     summary:
-      "A site for a local restaurant: menu, hours, location, and online ordering links, built to be updated without a developer.",
+      "Menu, hours, and reservations up front, with a warm look that matches the room. Built so the owner can update the menu without a developer.",
+    href: "/demos/bistro",
+    image: bistroShot,
   },
   {
-    label: "Contractor / home services",
+    label: "Ironwood Exteriors",
+    kind: "Contractor / home services",
     summary:
-      "A lead-focused site for a contractor: services, service area, photo gallery, and a quote request form that goes straight to their phone.",
+      "A lead machine: services, trust signals, and a quote form the owner gets the same day. Every button pushes toward a call.",
+    href: "/demos/contractor",
+    image: contractorShot,
   },
   {
-    label: "Small retail shop",
+    label: "Juniper & Pine Goods",
+    kind: "Small retail shop",
     summary:
-      "A storefront site for a small shop: featured products, store info, and hooks for social and email so regulars keep coming back.",
+      "Featured products, store hours, and an email list for new arrivals. Light and friendly, like walking into the shop.",
+    href: "/demos/shop",
+    image: shopShot,
   },
 ];
 
@@ -23,23 +37,38 @@ export default function Work() {
     <section id="work" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading
         title="Work"
-        lead="Case studies land here as projects wrap up. These three demo builds show the kind of work Sixophor takes on."
+        lead="Three demo builds, one for each kind of business I work with most. Click through and poke around; every page is live. Client case studies land here as projects wrap up."
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {demos.map((demo) => (
-          <div
+          <Link
             key={demo.label}
-            className="flex flex-col rounded-lg border border-edge bg-panel p-6"
+            href={demo.href}
+            className="group flex flex-col overflow-hidden rounded-lg border border-edge bg-panel transition-colors hover:border-accent/40"
           >
-            <span className="mb-3 inline-block w-fit rounded-full border border-accent/40 px-3 py-1 text-xs font-medium uppercase tracking-wide text-accent">
-              Demo project, coming soon
-            </span>
-            <h3 className="text-lg font-semibold">{demo.label}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              {demo.summary}
-            </p>
-          </div>
+            <div className="overflow-hidden border-b border-edge">
+              <Image
+                src={demo.image}
+                alt={`Screenshot of the ${demo.label} demo site`}
+                className="aspect-[4/3] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                sizes="(min-width: 1024px) 350px, (min-width: 640px) 50vw, 100vw"
+                placeholder="blur"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted">
+                {demo.kind} · Demo build
+              </span>
+              <h3 className="mt-2 text-lg font-semibold">{demo.label}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                {demo.summary}
+              </p>
+              <span className="mt-4 text-sm font-semibold text-accent">
+                View live demo →
+              </span>
+            </div>
+          </Link>
         ))}
       </div>
     </section>

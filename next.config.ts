@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Keep the dev overlay out of screenshots
+  devIndicators: false,
 };
 
 export default nextConfig;
