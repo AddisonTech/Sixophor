@@ -5,6 +5,7 @@ export default function Faq() {
   return (
     <section id="faq" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading
+        eyebrow="// faq"
         title="Common questions"
         lead="The things most people ask before starting a project."
       />

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import SectionHeading from "./SectionHeading";
 
 const steps = [
@@ -24,25 +27,58 @@ const steps = [
 ];
 
 export default function Process() {
+  const ref = useRef<HTMLOListElement>(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setActive(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setActive(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -120px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="process" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading
+        eyebrow="// process"
         title="Process"
         lead="Four steps, no surprises. You always know where the project stands and what happens next."
       />
 
-      <ol className="grid gap-6 md:grid-cols-4 md:gap-4">
+      <ol
+        ref={ref}
+        className={`relative grid gap-6 md:grid-cols-4 md:gap-4 ${active ? "process-active" : ""}`}
+      >
+        {/* Rail behind the step numbers, desktop only */}
+        <div
+          className="absolute left-0 right-0 top-[18px] hidden h-px bg-edge md:block"
+          aria-hidden="true"
+        />
+        <div
+          className="rail-progress absolute left-0 right-0 top-[18px] hidden h-px bg-accent md:block"
+          aria-hidden="true"
+        />
+
         {steps.map((step, index) => (
           <li key={step.title} className="relative flex flex-col">
-            <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-ink">
-                {index + 1}
-              </span>
-              <span
-                className="hidden h-px flex-1 bg-edge md:block"
-                aria-hidden="true"
-              />
-            </div>
+            <span
+              className="rail-step relative z-10 mb-4 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"
+              style={{ transitionDelay: `${300 + index * 280}ms` }}
+            >
+              {index + 1}
+            </span>
             <h3 className="text-base font-semibold">{step.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               {step.description}

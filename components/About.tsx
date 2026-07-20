@@ -2,8 +2,9 @@ import SectionHeading from "./SectionHeading";
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading title="About" />
+    <section id="about" className="w-full bg-band">
+      <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+        <SectionHeading eyebrow="// about" title="About" />
 
       <div className="max-w-2xl space-y-5 leading-relaxed text-muted">
         <p>
@@ -27,6 +28,7 @@ export default function About() {
           director. You talk directly to the people doing the work, from the
           first conversation to the final handoff.
         </p>
+        </div>
       </div>
     </section>
   );

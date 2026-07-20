@@ -7,6 +7,7 @@
   --color-fg: #f5f7fa;
   --color-muted: #9ca3af;
   --color-edge: #262b35;
+  --color-band: #10131a;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -55,6 +56,112 @@ body {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+}
+
+/* Cursor-following border glow on cards */
+.glow-card {
+  position: relative;
+}
+
+.glow-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: radial-gradient(
+      220px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(34, 211, 238, 0.55),
+      transparent 70%
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0) border-box;
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0) border-box;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.glow-card:hover::after {
+  opacity: 1;
+}
+
+/* Section divider: a line with a node traveling along it */
+.node-divider {
+  position: relative;
+  height: 2px;
+  width: 64px;
+  border-radius: 1px;
+  background: var(--color-edge);
+}
+
+.node-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.9);
+  animation: node-travel 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes node-travel {
+  from {
+    left: 0;
+  }
+  to {
+    left: 58px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-divider::after {
+    animation: none;
+  }
+}
+
+/* Process rail: line draws in and steps light up in sequence */
+.rail-progress {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+.process-active .rail-progress {
+  transform: scaleX(1);
+}
+
+.rail-step {
+  background: var(--color-panel);
+  border: 1px solid var(--color-edge);
+  color: var(--color-muted);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.process-active .rail-step {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-progress,
+  .rail-step {
     transition: none;
   }
 }

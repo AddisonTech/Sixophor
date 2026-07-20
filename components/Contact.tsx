@@ -8,11 +8,13 @@ import {
 
 export default function Contact() {
   return (
-    <section id="contact" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading
-        title="Start a project"
-        lead="Tell me what you're building and I'll get back to you within one business day."
-      />
+    <section id="contact" className="w-full bg-band">
+      <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+        <SectionHeading
+          eyebrow="// contact"
+          title="Start a project"
+          lead="Tell me what you're building and I'll get back to you within one business day."
+        />
 
       <div className="max-w-2xl">
         <ContactForm />
@@ -33,6 +35,7 @@ export default function Contact() {
           </a>
           .
         </p>
+        </div>
       </div>
     </section>
   );
