@@ -4,6 +4,7 @@ import SectionHeading from "./SectionHeading";
 import bistroShot from "@/public/work/bistro.png";
 import contractorShot from "@/public/work/contractor.png";
 import shopShot from "@/public/work/shop.png";
+import portfolioShot from "@/public/work/portfolio.png";
 
 const demos = [
   {
@@ -71,6 +72,37 @@ export default function Work() {
           </Link>
         ))}
       </div>
+
+      <a
+        href="https://addisontech.github.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-6 grid overflow-hidden rounded-lg border border-edge bg-panel transition-colors hover:border-accent/40 md:grid-cols-2"
+      >
+        <div className="overflow-hidden border-b border-edge md:border-b-0 md:border-r">
+          <Image
+            src={portfolioShot}
+            alt="Screenshot of Addison's live portfolio site"
+            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+            sizes="(min-width: 768px) 50vw, 100vw"
+            placeholder="blur"
+          />
+        </div>
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <span className="text-xs font-medium uppercase tracking-wide text-accent">
+            And one that&apos;s real · Live site
+          </span>
+          <h3 className="mt-2 text-xl font-semibold">My own portfolio</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            The site I built for myself, live right now. Animated canvas work,
+            fast load times, and the same design discipline this page is built
+            with. Everything Sixophor sells, I use on my own name first.
+          </p>
+          <span className="mt-4 text-sm font-semibold text-accent">
+            Visit addisontech.github.io →
+          </span>
+        </div>
+      </a>
     </section>
   );
 }
