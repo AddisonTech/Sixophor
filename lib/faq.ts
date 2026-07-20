@@ -7,7 +7,7 @@ export const faqs: FaqItem[] = [
   {
     question: "How long does a project take?",
     answer:
-      "Most small business sites take two to four weeks from deposit to launch, depending on scope and how quickly content and feedback come back. Bigger builds take longer. Either way, the scope of work includes a real timeline before you commit.",
+      "Most small business sites take one to four weeks from deposit to launch, depending on scope and how quickly content and feedback come back. Bigger builds take longer. Either way, the scope of work includes a real timeline before you commit.",
   },
   {
     question: "How does payment work?",
