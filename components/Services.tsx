@@ -44,11 +44,11 @@ export default function Services() {
 
         <div className="flex flex-col justify-center rounded-lg border border-accent/40 bg-accent/5 p-6 sm:col-span-2 lg:col-span-1">
           <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            Founding client pricing
+            Founding client spots
           </p>
           <p className="mt-2 text-sm leading-relaxed">
-            25% off for the first 3 projects, in exchange for a testimonial and
-            permission to use the work as a case study.
+            The first 3 projects get special launch pricing, in exchange for a
+            testimonial and permission to use the work as a case study.
           </p>
         </div>
       </div>
