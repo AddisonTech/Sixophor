@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
+import { FORM_TO_EMAIL, SITE_NAME } from "@/lib/site";
 
 const MAX_LENGTHS = { name: 200, email: 320, projectType: 100, message: 5000 };
 
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       from: `${SITE_NAME} <onboarding@resend.dev>`,
-      to: [CONTACT_EMAIL],
+      to: [FORM_TO_EMAIL],
       reply_to: fields.email,
       subject: `Project inquiry: ${fields.projectType}`,
       text: [
