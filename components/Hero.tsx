@@ -34,10 +34,10 @@ export default function Hero() {
             </p>
           </div>
         </div>
-        {/* Canvas hidden below lg. At xl+ it shifts right by (half the viewport
-            minus a fixed offset) so it keeps a small, constant gap to the
-            viewport edge at any desktop width instead of drifting inward. */}
-        <div className="hidden shrink-0 lg:block lg:translate-x-0 xl:translate-x-[calc(50vw-622px)]">
+        {/* Canvas hidden below lg. Sits at the right edge of the page content
+            grid (max-w-6xl), aligned with the rest of the layout rather than
+            bleeding out toward the viewport edge. */}
+        <div className="hidden shrink-0 lg:block">
           <Hero604 />
         </div>
       </div>
