@@ -34,7 +34,10 @@ export default function Hero() {
             </p>
           </div>
         </div>
-        <div className="hidden shrink-0 lg:block lg:translate-x-0 xl:translate-x-12">
+        {/* Canvas hidden below lg. At xl+ it shifts right by (half the viewport
+            minus a fixed offset) so it keeps a small, constant gap to the
+            viewport edge at any desktop width instead of drifting inward. */}
+        <div className="hidden shrink-0 lg:block lg:translate-x-0 xl:translate-x-[calc(50vw-582px)]">
           <Hero604 />
         </div>
       </div>
