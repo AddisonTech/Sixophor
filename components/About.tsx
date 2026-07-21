@@ -8,19 +8,18 @@ export default function About() {
 
       <div className="max-w-2xl space-y-5 leading-relaxed text-muted">
         <p>
-          I&apos;m Addison. My day job is controls engineering: I work as a
-          Controls Engineering Technician on industrial automation, the systems
-          that run factory equipment. That work has a particular standard.
-          Things either run or they don&apos;t, and when they don&apos;t,
-          production stops. You learn to test before you ship and to document
-          what you hand off.
+          I&apos;m Addison. I build software: websites, dashboards, AI-driven
+          tools, and multi-agent systems, using modern frameworks and the same
+          AI tools reshaping how things get built. That&apos;s the core of what
+          Sixophor does.
         </p>
         <p>
-          Outside of automation, I build software. I&apos;ve been working with
-          modern web frameworks and AI tools for years: websites, dashboards,
-          mobile apps, and multi-agent systems. Sixophor is where those two
-          sides meet: someone who has debugged equipment on a factory floor at
-          2 AM, building your website with the newest tools available.
+          What makes it different is where that skill is tested. My day job is
+          controls engineering, industrial automation for factory equipment,
+          where the standard is absolute. Things either run or they don&apos;t,
+          and when they don&apos;t, production stops. You learn to test before
+          you ship and to document what you hand off, habits that carry straight
+          into how I build software.
         </p>
         <p>
           Sixophor is a family operation, kept small on purpose. I handle
