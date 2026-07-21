@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
 import GlowCard from "./GlowCard";
+import ExampleButton from "./ExampleButton";
 import { services } from "@/lib/services";
 import {
   IconSite,
@@ -40,6 +41,16 @@ export default function Services() {
           <p className="mt-4 text-lg font-bold text-accent">
             {featured.pricing}
           </p>
+          {featured.example && (
+            <ExampleButton
+              src={featured.example.src}
+              alt={featured.example.alt}
+              caption={featured.example.caption}
+              liveUrl={featured.example.liveUrl}
+              width={featured.example.width}
+              height={featured.example.height}
+            />
+          )}
         </GlowCard>
 
         {rest.map((service, i) => {
@@ -61,6 +72,16 @@ export default function Services() {
                 <p className="mt-1 text-sm leading-relaxed text-muted">
                   {service.pricingNote}
                 </p>
+              )}
+              {service.example && (
+                <ExampleButton
+                  src={service.example.src}
+                  alt={service.example.alt}
+                  caption={service.example.caption}
+                  liveUrl={service.example.liveUrl}
+                  width={service.example.width}
+                  height={service.example.height}
+                />
               )}
             </GlowCard>
           );

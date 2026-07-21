@@ -3,6 +3,14 @@ export type Service = {
   description: string;
   pricing: string;
   pricingNote?: string;
+  example?: {
+    src: string;
+    alt: string;
+    caption: string;
+    liveUrl?: string;
+    width: number;
+    height: number;
+  };
 };
 
 export const services: Service[] = [
@@ -17,6 +25,14 @@ export const services: Service[] = [
     description:
       "Interfaces built from your designs or specs, in React and TypeScript, with attention to the details that make a UI feel finished.",
     pricing: "$1,600 to $4,800",
+    example: {
+      src: "/work/chalk.png",
+      alt: "Chalk football intelligence platform landing page",
+      caption: "Chalk — a football intelligence platform I built.",
+      liveUrl: "https://chalk-sable.vercel.app",
+      width: 1280,
+      height: 900,
+    },
   },
   {
     title: "AI feature integration",
@@ -24,6 +40,15 @@ export const services: Service[] = [
       "Chat assistants, document search, content tools, and other AI features wired into your existing product or site, scoped to what actually helps your users.",
     pricing: "Custom quote",
     pricingNote: "Scoped individually. Every project is different.",
+    example: {
+      src: "/work/smith-agentic.png",
+      alt: "Smith_Agentic multi-agent dashboard, crew configuration view",
+      caption:
+        "Smith_Agentic — a multi-agent AI system I built (shown in demo mode).",
+      liveUrl: "https://addisontech.github.io/Smith_Agentic_UI/",
+      width: 1280,
+      height: 900,
+    },
   },
   {
     title: "Branding and logo work",
@@ -48,5 +73,13 @@ export const services: Service[] = [
     description:
       "Internal tools and dashboards that pull your data into one place and make it readable: sales, operations, equipment, whatever you track.",
     pricing: "Custom quote",
+    example: {
+      src: "/work/resume-coach.png",
+      alt: "Resume Coach live analyzer with scoring and preview",
+      caption: "Resume Coach — a live resume analyzer I built.",
+      liveUrl: "https://addisontech.github.io/demos/resume-builder.html",
+      width: 1280,
+      height: 900,
+    },
   },
 ];
