@@ -11,8 +11,7 @@ export default function Hero() {
           </h1>
           <p className="max-w-2xl text-lg text-muted sm:text-xl">
             Sixophor Software is a small design and development studio.
-            Websites, front ends, dashboards, and AI features, built carefully
-            and handed off clean.
+            Everything built carefully and handed off clean.
           </p>
           <div className="mt-2 flex flex-col gap-3">
             <div className="flex flex-wrap items-center gap-3">

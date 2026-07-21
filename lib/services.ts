@@ -23,7 +23,7 @@ export const services: Service[] = [
     description:
       "Chat assistants, document search, content tools, and other AI features wired into your existing product or site, scoped to what actually helps your users.",
     pricing: "Custom quote",
-    pricingNote: "Scoped individually, every project's different.",
+    pricingNote: "Scoped individually. Every project is different.",
   },
   {
     title: "Branding and logo work",
