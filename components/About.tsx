@@ -1,4 +1,6 @@
+import Image from "next/image";
 import SectionHeading from "./SectionHeading";
+import addisonPhoto from "@/public/addison.jpg";
 
 export default function About() {
   return (
@@ -6,7 +8,19 @@ export default function About() {
       <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <SectionHeading eyebrow="// about" title="About" />
 
-      <div className="max-w-2xl space-y-5 leading-relaxed text-muted">
+      <div className="grid gap-8 md:grid-cols-[280px_1fr] md:items-start md:gap-12">
+        <div className="w-full max-w-[280px] overflow-hidden rounded-lg border border-edge bg-panel">
+          <Image
+            src={addisonPhoto}
+            alt="Addison Smith, founder of Sixophor Software"
+            className="h-auto w-full"
+            sizes="(min-width: 768px) 280px, 100vw"
+            placeholder="blur"
+            priority={false}
+          />
+        </div>
+
+        <div className="max-w-2xl space-y-5 leading-relaxed text-muted">
         <p>
           I&apos;m Addison. I build software: websites, dashboards, AI-driven
           tools, and multi-agent systems, using modern frameworks and the same
@@ -27,6 +41,7 @@ export default function About() {
           director. You talk directly to the people doing the work, from the
           first conversation to the final handoff.
         </p>
+        </div>
         </div>
       </div>
     </section>

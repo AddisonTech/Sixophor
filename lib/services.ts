@@ -2,6 +2,7 @@ export type Service = {
   title: string;
   description: string;
   pricing: string;
+  pricingNote?: string;
 };
 
 export const services: Service[] = [
@@ -15,13 +16,14 @@ export const services: Service[] = [
     title: "Front end and UI builds",
     description:
       "Interfaces built from your designs or specs, in React and TypeScript, with attention to the details that make a UI feel finished.",
-    pricing: "Custom quote",
+    pricing: "$1,600 to $4,800",
   },
   {
     title: "AI feature integration",
     description:
       "Chat assistants, document search, content tools, and other AI features wired into your existing product or site, scoped to what actually helps your users.",
     pricing: "Custom quote",
+    pricingNote: "Scoped individually, every project's different.",
   },
   {
     title: "Branding and logo work",

@@ -57,6 +57,11 @@ export default function Services() {
               <p className="mt-4 text-sm font-semibold text-accent">
                 {service.pricing}
               </p>
+              {service.pricingNote && (
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {service.pricingNote}
+                </p>
+              )}
             </GlowCard>
           );
         })}

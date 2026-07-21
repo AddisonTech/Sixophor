@@ -35,6 +35,10 @@ export default function Contact() {
           </a>
           .
         </p>
+        <p className="mt-4 text-xs text-muted">
+          Your information is only used to respond to your inquiry, never shared
+          or sold.
+        </p>
         </div>
       </div>
     </section>
