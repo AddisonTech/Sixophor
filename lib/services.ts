@@ -55,12 +55,27 @@ export const services: Service[] = [
     description:
       "A logo, wordmark, and color system that hold up across your site, invoices, and signage. Simple and consistent, not overworked.",
     pricing: "Custom quote",
+    example: {
+      src: "/work/brand-systems.png",
+      alt: "Brand systems: wordmarks and color palettes for Sixophor, Chalk, and Sift",
+      caption:
+        "Distinct brand systems (wordmark + palette) I've designed across my projects.",
+      width: 2400,
+      height: 1120,
+    },
   },
   {
     title: "SEO fundamentals",
     description:
       "The groundwork: page structure, metadata, performance, and local listings, so search engines can find you and rank you for the right terms.",
     pricing: "Custom quote",
+    example: {
+      src: "/work/seo-lighthouse.png",
+      alt: "Lighthouse scores for sixophor.com: Performance 98, Accessibility 100, Best Practices 100, SEO 100",
+      caption: "Real Lighthouse scores for a site I built (sixophor.com).",
+      width: 2400,
+      height: 1040,
+    },
   },
   {
     title: "Hosting and maintenance retainers",
