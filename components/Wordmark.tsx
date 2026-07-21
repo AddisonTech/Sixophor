@@ -1,5 +1,5 @@
 type WordmarkProps = {
-  size?: "sm" | "lg";
+  size?: "sm" | "lg" | "xl";
 };
 
 // Dense particle ring (radius 25) sampled from the logo art: [cx, cy, r, opacity].
@@ -39,8 +39,14 @@ function ParticleO({ className }: { className?: string }) {
 }
 
 export default function Wordmark({ size = "sm" }: WordmarkProps) {
-  const nameClass = size === "lg" ? "text-3xl" : "text-xl";
-  const subClass = size === "lg" ? "text-[0.7rem]" : "text-[0.5rem]";
+  const nameClass =
+    size === "xl" ? "text-5xl" : size === "lg" ? "text-3xl" : "text-xl";
+  const subClass =
+    size === "xl"
+      ? "text-[0.95rem]"
+      : size === "lg"
+        ? "text-[0.7rem]"
+        : "text-[0.5rem]";
 
   return (
     <span className="inline-flex flex-col items-center leading-none">
