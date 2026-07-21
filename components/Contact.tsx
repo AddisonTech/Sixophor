@@ -17,6 +17,22 @@ export default function Contact() {
         />
 
       <div className="max-w-2xl">
+        <ul className="mb-8 flex flex-col gap-2 text-sm text-muted">
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">✓</span>
+            You keep everything at handoff, including the code, accounts, and
+            domain.
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">✓</span>
+            50% to start, 50% at handoff. No surprise charges.
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">✓</span>
+            Revision checkpoints throughout, so nothing&apos;s final until you
+            sign off.
+          </li>
+        </ul>
         <ContactForm />
         <p className="mt-6 text-sm text-muted">
           Prefer email or a call? Reach me directly at{" "}

@@ -66,14 +66,21 @@ export default function Services() {
           );
         })}
 
-        <GlowCard className="flex flex-col justify-center rounded-lg border border-accent/40 bg-accent/5 p-6 sm:col-span-2 lg:col-span-1">
-          <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-            Founding client spots
-          </p>
-          <p className="mt-2 text-sm leading-relaxed">
-            The first 3 projects get special launch pricing, in exchange for a
-            testimonial and permission to use the work as a case study.
-          </p>
+        <GlowCard className="rounded-lg border border-accent/40 bg-accent/5 sm:col-span-2 lg:col-span-1">
+          <a href="#contact" className="flex h-full flex-col justify-center p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent">
+              Founding clients
+            </p>
+            <p className="mt-2 text-sm leading-relaxed">
+              Sixophor is just getting started, so my first three projects come
+              at founding pricing. In return, I&apos;ll ask for honest feedback
+              and the OK to feature the finished work. You get a better rate,
+              plus my full attention while the roster is still small.
+            </p>
+            <span className="mt-4 text-sm font-semibold text-accent">
+              Claim a founding spot →
+            </span>
+          </a>
         </GlowCard>
       </div>
     </section>
