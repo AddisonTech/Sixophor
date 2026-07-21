@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-const SIZE = 360;
+const SIZE = 480;
 const SAMPLE_STEP = 9;
-const CONNECT_RADIUS = 22;
+const CONNECT_RADIUS = 29;
 const MAX_LINKS_PER_NODE = 3;
 
 const CYAN = { r: 34, g: 211, b: 238 };

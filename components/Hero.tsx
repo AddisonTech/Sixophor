@@ -34,7 +34,7 @@ export default function Hero() {
             </p>
           </div>
         </div>
-        <div className="hidden shrink-0 lg:block lg:translate-x-8 xl:translate-x-20">
+        <div className="hidden shrink-0 lg:block lg:translate-x-0 xl:translate-x-12">
           <Hero604 />
         </div>
       </div>
