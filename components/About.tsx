@@ -16,7 +16,7 @@ export default function About() {
           what you hand off.
         </p>
         <p>
-          Outside the plant, I build software. I&apos;ve been working with
+          Outside of automation, I build software. I&apos;ve been working with
           modern web frameworks and AI tools for years: websites, dashboards,
           mobile apps, and multi-agent systems. Sixophor is where those two
           sides meet: someone who has debugged equipment on a factory floor at
