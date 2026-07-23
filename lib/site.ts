@@ -11,4 +11,4 @@ export const CONTACT_PHONE = "8649416314";
 export const CONTACT_PHONE_DISPLAY = "(864) 941-6314";
 // Booking link for the "book a call" CTA (e.g. a Cal.com URL). Leave empty and
 // the CTA falls back to the on-page contact form until a link is set.
-export const BOOKING_URL = "";
+export const BOOKING_URL = "https://cal.com/addisonsmith/15min";
