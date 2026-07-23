@@ -1,6 +1,9 @@
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
+import BookCallButton from "./BookCallButton";
 import {
+  BOOKING_URL_15,
+  BOOKING_URL_30,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   CONTACT_PHONE_DISPLAY,
@@ -33,6 +36,23 @@ export default function Contact() {
             sign off.
           </li>
         </ul>
+        <div className="mb-8 flex flex-col gap-3 rounded-lg border border-edge bg-panel p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-muted">
+            Rather grab a time on the calendar?
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <BookCallButton
+              url={BOOKING_URL_15}
+              label="Book 15 min"
+              className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 text-sm font-semibold text-ink transition-opacity hover:opacity-85"
+            />
+            <BookCallButton
+              url={BOOKING_URL_30}
+              label="Book 30 min"
+              className="inline-flex min-h-11 items-center rounded-md border border-edge px-5 text-sm font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
+            />
+          </div>
+        </div>
         <ContactForm />
         <p className="mt-6 text-sm text-muted">
           Prefer email or a call? Reach me directly at{" "}

@@ -6,7 +6,13 @@ import ContactForm from "./ContactForm";
 import SectionHeading from "./SectionHeading";
 import GlowCard from "./GlowCard";
 import BookCallButton from "./BookCallButton";
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@/lib/site";
+import {
+  BOOKING_URL_15,
+  BOOKING_URL_30,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+} from "@/lib/site";
 import type { Industry } from "@/lib/industries";
 
 export default function IndustryPage({ industry }: { industry: Industry }) {
@@ -34,7 +40,10 @@ export default function IndustryPage({ industry }: { industry: Industry }) {
               <p className="max-w-xl text-lg text-muted">{industry.subhead}</p>
               <div className="mt-2 flex flex-col gap-3">
                 <div className="flex flex-wrap items-center gap-3">
-                  <BookCallButton className="inline-flex min-h-12 items-center rounded-md bg-accent px-8 text-base font-semibold text-ink transition-opacity hover:opacity-85" />
+                  <BookCallButton
+                    label="Book a 15-min call"
+                    className="inline-flex min-h-12 items-center rounded-md bg-accent px-8 text-base font-semibold text-ink transition-opacity hover:opacity-85"
+                  />
                   <a
                     href={industry.demo.href}
                     className="inline-flex min-h-12 items-center rounded-md border border-edge px-8 text-base font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
@@ -43,8 +52,13 @@ export default function IndustryPage({ industry }: { industry: Industry }) {
                   </a>
                 </div>
                 <p className="text-sm text-muted">
-                  Free scoping call, no obligation, reply within one business day.
+                  Free, no obligation, reply within one business day.
                 </p>
+                <BookCallButton
+                  url={BOOKING_URL_30}
+                  label="Prefer more time? Book a 30-minute call →"
+                  className="text-sm font-semibold text-accent transition-opacity hover:opacity-85"
+                />
               </div>
             </div>
             <div className="overflow-hidden rounded-lg border border-edge bg-panel">
@@ -170,6 +184,23 @@ export default function IndustryPage({ industry }: { industry: Industry }) {
             lead={`Tell me about your ${industry.noun} and I'll get back to you within one business day.`}
           />
           <div className="max-w-2xl">
+            <div className="mb-8 flex flex-col gap-3 rounded-lg border border-edge bg-panel p-5 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-muted">
+                Rather grab a time on the calendar?
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <BookCallButton
+                  url={BOOKING_URL_15}
+                  label="Book 15 min"
+                  className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 text-sm font-semibold text-ink transition-opacity hover:opacity-85"
+                />
+                <BookCallButton
+                  url={BOOKING_URL_30}
+                  label="Book 30 min"
+                  className="inline-flex min-h-11 items-center rounded-md border border-edge px-5 text-sm font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
+                />
+              </div>
+            </div>
             <ContactForm />
             <p className="mt-6 text-sm text-muted">
               Prefer email or a call? Reach me directly at{" "}
