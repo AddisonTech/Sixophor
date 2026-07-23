@@ -9,3 +9,6 @@ export const CONTACT_EMAIL = "addison@sixophor.com";
 export const FORM_TO_EMAIL = "addisontechdev@gmail.com";
 export const CONTACT_PHONE = "8649416314";
 export const CONTACT_PHONE_DISPLAY = "(864) 941-6314";
+// Booking link for the "book a call" CTA (e.g. a Cal.com URL). Leave empty and
+// the CTA falls back to the on-page contact form until a link is set.
+export const BOOKING_URL = "";
