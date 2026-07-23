@@ -1,4 +1,5 @@
 import Hero604 from "./Hero604";
+import BookCallButton from "./BookCallButton";
 
 export default function Hero() {
   return (
@@ -27,6 +28,10 @@ export default function Hero() {
               >
                 Ask a question
               </a>
+              <BookCallButton
+                label="Book a call"
+                className="inline-flex min-h-12 items-center rounded-md border border-edge px-8 text-base font-semibold text-fg transition-colors hover:border-accent hover:text-accent"
+              />
             </div>
             <p className="text-sm text-muted">
               Free scoping call, no obligation, reply within one business day.
