@@ -17,6 +17,17 @@ type Result = {
   finalUrl: string;
 };
 
+type PsiResponse = {
+  error?: { message?: string };
+  lighthouseResult?: {
+    categories?: Record<string, { score?: number | null }>;
+    audits?: Record<string, { displayValue?: string; details?: { data?: string } }>;
+    finalDisplayedUrl?: string;
+  };
+};
+
+const PAGESPEED_KEY = process.env.NEXT_PUBLIC_PAGESPEED_KEY ?? "";
+
 function scoreColor(s: number) {
   return s >= 90 ? "#0cce6b" : s >= 50 ? "#ffa400" : "#ff4e42";
 }
@@ -80,28 +91,79 @@ export default function WebsiteGrader() {
     setError("");
     setResult(null);
 
+    const api =
+      "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?" +
+      `url=${encodeURIComponent(target)}` +
+      "&category=performance&category=accessibility&category=best-practices&category=seo&strategy=mobile" +
+      (PAGESPEED_KEY ? `&key=${PAGESPEED_KEY}` : "");
+
     const ctrl = new AbortController();
-    const timeout = setTimeout(() => ctrl.abort(), 70000);
+    // The browser can wait as long as PageSpeed needs (no serverless cap).
+    const timeout = setTimeout(() => ctrl.abort(), 110000);
     try {
-      const res = await fetch(`/api/grade?url=${encodeURIComponent(target)}`, {
-        signal: ctrl.signal,
-      });
+      let data: PsiResponse | undefined;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(api, { signal: ctrl.signal });
+        data = (await res.json()) as PsiResponse;
+        const m = data.error?.message ?? "";
+        // PageSpeed intermittently returns a transient error; it fails fast, so retry once.
+        if (
+          attempt === 0 &&
+          data.error &&
+          /something went wrong|internal error|please try|unable to process/i.test(m)
+        ) {
+          continue;
+        }
+        break;
+      }
       clearTimeout(timeout);
-      const data = await res.json();
-      if (!res.ok || data.error) {
+
+      if (!data || data.error) {
+        const raw = data?.error?.message ?? "";
         setError(
-          data.error ||
-            "Could not analyze that site. Double-check the address and try again.",
+          /quota/i.test(raw)
+            ? "The grader is briefly over its limit. Please try again in a minute."
+            : raw || "Could not analyze that site. Double-check the address and try again.",
         );
         setStatus("error");
         return;
       }
-      setResult(data as Result);
+
+      const lr = data.lighthouseResult;
+      if (!lr || !lr.categories) {
+        setError("Could not analyze that site. Check the address and try again.");
+        setStatus("error");
+        return;
+      }
+      const cat = lr.categories;
+      const scores: Scores = {
+        performance: Math.round((cat.performance?.score ?? 0) * 100),
+        accessibility: Math.round((cat.accessibility?.score ?? 0) * 100),
+        bestPractices: Math.round((cat["best-practices"]?.score ?? 0) * 100),
+        seo: Math.round((cat.seo?.score ?? 0) * 100),
+      };
+      const screenshot = lr.audits?.["final-screenshot"]?.details?.data;
+      const metrics = (
+        [
+          ["Largest Contentful Paint", lr.audits?.["largest-contentful-paint"]?.displayValue],
+          ["First Contentful Paint", lr.audits?.["first-contentful-paint"]?.displayValue],
+          ["Total Blocking Time", lr.audits?.["total-blocking-time"]?.displayValue],
+        ] as [string, string | undefined][]
+      )
+        .filter(([, v]) => Boolean(v))
+        .map(([label, value]) => ({ label, value: value as string }));
+
+      setResult({
+        scores,
+        screenshot,
+        metrics,
+        finalUrl: lr.finalDisplayedUrl ?? target,
+      });
       setStatus("done");
     } catch {
       clearTimeout(timeout);
       setError(
-        "That site took too long to analyze. Large, heavy sites can time out, give it another try or test a smaller site.",
+        "That site took too long to analyze. Give it another try, or test a smaller site.",
       );
       setStatus("error");
     }
