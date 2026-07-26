@@ -6,6 +6,15 @@ export const maxDuration = 60;
 const CATEGORIES =
   "category=performance&category=accessibility&category=best-practices&category=seo";
 
+type PsiResponse = {
+  error?: { message?: string };
+  lighthouseResult?: {
+    categories?: Record<string, { score?: number | null }>;
+    audits?: Record<string, { displayValue?: string; details?: { data?: string } }>;
+    finalDisplayedUrl?: string;
+  };
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   let target = (searchParams.get("url") ?? "").trim();
@@ -28,26 +37,32 @@ export async function GET(request: Request) {
     `url=${encodeURIComponent(target)}&${CATEGORIES}&strategy=mobile` +
     (key ? `&key=${key}` : "");
 
-  let data: {
-    error?: { message?: string };
-    lighthouseResult?: {
-      categories?: Record<string, { score?: number | null }>;
-      audits?: Record<string, { displayValue?: string; details?: { data?: string } }>;
-      finalDisplayedUrl?: string;
-    };
-  };
-  try {
-    const res = await fetch(api);
-    data = await res.json();
-  } catch {
-    return NextResponse.json(
-      { error: "Could not reach the analyzer. Try again in a moment." },
-      { status: 502 },
-    );
+  let data: PsiResponse | undefined;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(api);
+      data = (await res.json()) as PsiResponse;
+    } catch {
+      return NextResponse.json(
+        { error: "Could not reach the analyzer. Try again in a moment." },
+        { status: 502 },
+      );
+    }
+    const m = data.error?.message ?? "";
+    // PageSpeed intermittently returns a transient "something went wrong";
+    // it fails fast, so retrying once is safe and usually succeeds.
+    if (
+      attempt === 0 &&
+      data.error &&
+      /something went wrong|internal error|please try|unable to process/i.test(m)
+    ) {
+      continue;
+    }
+    break;
   }
 
-  if (data.error) {
-    const raw = data.error.message ?? "";
+  if (!data || data.error) {
+    const raw = data?.error?.message ?? "";
     const msg = /quota/i.test(raw)
       ? "The grader is briefly over its limit. Please try again in a minute."
       : raw || "Could not analyze that site.";

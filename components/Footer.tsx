@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Wordmark from "./Wordmark";
 import {
   CONTACT_EMAIL,
@@ -13,12 +12,6 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <Wordmark size="xl" />
         <div className="flex flex-col gap-2 text-sm text-muted sm:items-end">
-          <Link
-            href="/grader"
-            className="inline-flex min-h-6 items-center font-semibold text-accent transition-opacity hover:opacity-85"
-          >
-            Free Website Grader →
-          </Link>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             className="inline-flex min-h-6 items-center gap-2 transition-colors hover:text-accent"

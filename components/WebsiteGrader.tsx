@@ -101,7 +101,7 @@ export default function WebsiteGrader() {
     } catch {
       clearTimeout(timeout);
       setError(
-        "That took too long or the site could not be reached. Try another address.",
+        "That site took too long to analyze. Large, heavy sites can time out, give it another try or test a smaller site.",
       );
       setStatus("error");
     }

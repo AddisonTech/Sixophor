@@ -8,6 +8,7 @@ import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import GraderCallout from "@/components/GraderCallout";
 import { faqs } from "@/lib/faq";
 import {
   CONTACT_EMAIL,
@@ -57,6 +58,9 @@ export default function Home() {
         <Hero />
         <Reveal>
           <Services />
+        </Reveal>
+        <Reveal>
+          <GraderCallout />
         </Reveal>
         <Reveal>
           <Work />
