@@ -9,6 +9,7 @@ const links = [
   { href: "#process", label: "Process" },
   { href: "#about", label: "About" },
   { href: "#faq", label: "FAQ" },
+  { href: "/grader", label: "Free Grader" },
 ];
 
 export default function Header() {
