@@ -29,11 +29,12 @@ export default function About() {
         </p>
         <p>
           What makes it different is where that skill is tested. My day job is
-          controls engineering, industrial automation for factory equipment,
-          where the standard is absolute. Things either run or they don&apos;t,
-          and when they don&apos;t, production stops. You learn to test before
-          you ship and to document what you hand off, habits that carry straight
-          into how I build software.
+          controls engineering. I&apos;m a Controls Application Engineer at
+          Mantis Innovation, and I came up on the factory floor at Daedalus
+          Industrial, where the standard is absolute. Things either ran or they
+          didn&apos;t, and when they didn&apos;t, production stopped. You learn
+          to test before you ship and to document what you hand off, habits that
+          carry straight into how I build software.
         </p>
         <p>
           Sixophor is a family operation, kept small on purpose. I handle
