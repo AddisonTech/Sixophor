@@ -43,3 +43,7 @@ Note: on Resend's free tier without a verified domain, mail sends from `onboardi
 ## Deploy
 
 Push to GitHub and import the repo in Vercel. No extra configuration needed beyond the env vars above.
+
+## License
+
+The source code is MIT licensed (see `LICENSE`). The Sixophor name, logo, and site copy are not covered by that license and may not be reused.
